@@ -60,15 +60,15 @@ alertListDirective = (alerts, $sce) ->
     scope.trust = (alert) -> $sce.trustAsHtml(alert.msg)
   restrict: 'E'
   template: """
-    <alert
+    <uib-alert
       ng-repeat="alert in alerts.queue"
       type="{{alert.type}}"
       close="alerts.dismiss(alert)"
     >
       <div class="container" ng-bind-html="trust(alert)"></div>
-    </alert>
+    </uib-alert>
   """
 
-angular.module("ng-bootstrap-alerts", ['ui.bootstrap.alert', 'template/alert/alert.html'])
+angular.module("ng-bootstrap-alerts", ['ui.bootstrap.alert', 'uib/template/alert/alert.html'])
   .provider 'alerts', AlertProvider
   .directive 'alertList', ['alerts', '$sce', alertListDirective]
