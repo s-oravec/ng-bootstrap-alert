@@ -1,6 +1,6 @@
 (function() {
   var AlertProvider, Alerts, alertListDirective, pending,
-    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+    indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   pending = null;
 
@@ -35,8 +35,8 @@
       error: 'danger'
     };
 
-    function Alerts($timeout, pendingAlerts) {
-      this.$timeout = $timeout;
+    function Alerts($timeout1, pendingAlerts) {
+      this.$timeout = $timeout1;
       if (pendingAlerts == null) {
         pendingAlerts = [];
       }
@@ -62,7 +62,7 @@
       }, opts);
       if (this.typeMap[type]) {
         alert.type = this.typeMap[type];
-      } else if (__indexOf.call(this.validTypes, type) < 0) {
+      } else if (indexOf.call(this.validTypes, type) < 0) {
         alert.type = 'info';
       } else {
         alert.type = type;
@@ -91,10 +91,10 @@
         };
       },
       restrict: 'E',
-      template: "<alert\n  ng-repeat=\"alert in alerts.queue\"\n  type=\"{{alert.type}}\"\n  close=\"alerts.dismiss(alert)\"\n>\n  <div class=\"container\" ng-bind-html=\"trust(alert)\"></div>\n</alert>"
+      template: "<uib-alert\n  ng-repeat=\"alert in alerts.queue\"\n  type=\"{{alert.type}}\"\n  close=\"alerts.dismiss(alert)\"\n>\n  <div class=\"container\" ng-bind-html=\"trust(alert)\"></div>\n</uib-alert>"
     };
   };
 
-  angular.module("ng-bootstrap-alerts", ['ui.bootstrap.alert', 'template/alert/alert.html']).provider('alerts', AlertProvider).directive('alertList', ['alerts', '$sce', alertListDirective]);
+  angular.module("ng-bootstrap-alerts", ['ui.bootstrap.alert', 'uib/template/alert/alert.html']).provider('alerts', AlertProvider).directive('alertList', ['alerts', '$sce', alertListDirective]);
 
 }).call(this);
